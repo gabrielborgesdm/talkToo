@@ -2,7 +2,7 @@
 function configDB(){
 	$db = Array(
 	"host" => "localhost",
-	"name" => "chat_online",
+	"name" => "talktoo",
 	"user" => "root",
 	"password" => "root"
 	);
