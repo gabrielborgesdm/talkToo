@@ -18,16 +18,11 @@
 
                 <div class="col-sm-5 divCont my-3 " id="mensagem">
                     <div class="row justify-content-around" id="mensagemNome">
-                        <h1>Lucas</h1><h1>Joao</h1>
+                        <h2>&nbsp;</h2>
                     </div>
                     <div class="row mx-2 px-2" id="mensagemCampo">
-                        texto<br/>
-                        texto<br/>
-                        texto<br/>
-                        texto<br/>
                     </div>
-                    <form id="formMensagem" class="formBottom">
-
+                    <form name="formMensagem" class="formBottom">
                         <div class="form-row  justify-content-around ">
                            <input type="text" class="form-control col-9"  placeholder="Digite sua mensagem"  id="textoMensagem" />
                            <input type="button" class="col-2 btn btn-dark" onclick="enviaMensagem()" value="Go!" />
@@ -35,14 +30,18 @@
                     </form>
                 </div>
 
-                <div class="col-sm-5  divCont text-center my-3" id="resto">
+                <div class="col-sm-5  divCont text-center my-3" id="info">
 
-                    <h1>Jõao está online</h1>
-
-                    <form id="formCadastraPlayer" class="formBottom">
+                    <h1>Informações sobre a conversa:</h1>
+                    <h2 id="infoMembro" class="my-5"></h2>
+                    <div id="encerrarConversa" class="lead" style="margin-top:5rem; display:none;">
+                        <h3>Deseja encerrar a conversa?</h3>
+                        <button class="btn btn-outline-warning col-4">Clique aqui</button>
+                    </div>
+                    <form name="formCadastra" class="formBottom" style="display:none;">
                         <p class="h5">Cadastre-se:</p>
                         <div class="form-row  justify-content-around ">
-                           <input type="text" class="form-control col-9"  placeholder="Digite seu apelido"  id="nomeCadastraPlayer" />
+                           <input type="text" class="form-control col-9"  placeholder="Digite seu apelido" name="nomeCadastraPlayer" />
                            <input type="button" class="col-2 btn btn-dark" onclick="cadastraPlayer()" value="Go!" />
                         </div>
                     </form>
