@@ -1,2 +1,2 @@
 # Talk Too
-Software de bate papo desenvolvido com ajax
+Trabalho em grupo focado em proporcionar um melhor atendimento do Ajax.
