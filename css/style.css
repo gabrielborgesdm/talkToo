@@ -21,6 +21,12 @@ body{
     background-color: #B7BFC9;
     color: #1B2531;
     border-radius: 3px;
+    overflow: auto;
+}
+
+#mensagemCampo div{
+    font-size: 0.9rem;
+
 }
 
 .formBottom{

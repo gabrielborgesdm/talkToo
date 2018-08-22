@@ -12,7 +12,7 @@
         <script src="js/script.js"></script>
         <link type="text/css" rel="stylesheet" href="css/style.css">
     </head>
-    <body onload="acionaFuncao()">
+    <body onload="acionaFuncao()" onbeforeunload="encerrar()">
         <div class="container-fluid">
             <section class="row justify-content-around mt-3">
 
@@ -20,12 +20,12 @@
                     <div class="row justify-content-around" id="mensagemNome">
                         <h2>&nbsp;</h2>
                     </div>
-                    <div class="row mx-2 px-2" id="mensagemCampo">
+                    <div class="container" id="mensagemCampo">
                     </div>
-                    <form name="formMensagem" class="formBottom">
+                    <form name="formMensagem" onsubmit="cadastraMensagem(); return false;" class="formBottom">
                         <div class="form-row  justify-content-around ">
                            <input type="text" class="form-control col-9"  placeholder="Digite sua mensagem"  id="textoMensagem" />
-                           <input type="button" class="col-2 btn btn-dark" onclick="enviaMensagem()" value="Go!" />
+                           <input type="submit" class="col-2 btn btn-dark" value="Go!" />
                         </div>
                     </form>
                 </div>
@@ -33,16 +33,16 @@
                 <div class="col-sm-5  divCont text-center my-3" id="info">
 
                     <h1>Informações sobre a conversa:</h1>
-                    <h2 id="infoMembro" class="my-5"></h2>
+                    <h2 id="infoUsuario" class="my-5"></h2>
                     <div id="encerrarConversa" class="lead" style="margin-top:5rem; display:none;">
                         <h3>Deseja encerrar a conversa?</h3>
-                        <button class="btn btn-outline-warning col-4">Clique aqui</button>
+                        <button onclick="encerrar()" class="btn btn-outline-warning col-4">Clique aqui</button>
                     </div>
-                    <form name="formCadastra" class="formBottom" style="display:none;">
+                    <form name="formCadastra" onsubmit="cadastraUsuario(); return false" class="formBottom" style="display:none;">
                         <p class="h5">Cadastre-se:</p>
                         <div class="form-row  justify-content-around ">
-                           <input type="text" class="form-control col-9"  placeholder="Digite seu apelido" name="nomeCadastraPlayer" />
-                           <input type="button" class="col-2 btn btn-dark" onclick="cadastraPlayer()" value="Go!" />
+                           <input type="text" class="form-control col-9"  placeholder="Digite seu apelido" name="nomeCadastraUsuario" />
+                           <input type="submit" class="col-2 btn btn-dark" value="Go!" />
                         </div>
                     </form>
                 </div>
