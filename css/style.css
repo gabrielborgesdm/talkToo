@@ -25,7 +25,11 @@ body{
 }
 
 #mensagemCampo div{
-    font-size: 0.9rem;
+    font-weight: ;
+}
+
+#mensagemCampo span{
+    font-weight: bold;
 
 }
 

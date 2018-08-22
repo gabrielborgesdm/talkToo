@@ -42,9 +42,6 @@ function verificaOnlines(){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             num = this.responseText;
-            if(num == null){
-                num = 0;
-            }
         }
     };
     xhttp.open("GET", "verificaOnlines.php", false);
@@ -67,16 +64,16 @@ function montaUmUsuario(){
     mensagemNome.innerHTML = "<h2>" + onlines[0] +"</h2>";
     mensagemCampo.innerHTML = "";
     formMensagem[0][0].disabled = true;
+
     if(onlines[0] == nome){
         onlines[0] = "Você";
-    }
-    infoUsuario.innerHTML = "<h2>" + onlines[0] +" está online</h2>";
-    encerrarConversa.style.display = "none";
-    formCadastra[0].style.display = "none";
-
-    if(id == null){
+        encerrarConversa.style.display = "block";
+        formCadastra[0].style.display = "none";
+    }else{
+        encerrarConversa.style.display = "none";
         formCadastra[0].style.display = "block";
     }
+    infoUsuario.innerHTML = "<h2>" + onlines[0] +" está online</h2>";
 }
 
 function montaDoisUsuario(){
@@ -91,7 +88,7 @@ function montaDoisUsuario(){
     }
     mensagemNome.innerHTML = nomes;
     formMensagem[0][0].disabled = false;
-    infoUsuario.innerHTML = "<h2>Usuários estão online</h2>";
+    infoUsuario.innerHTML = "<h2>Ambos estão online</h2>";
     encerrarConversa.style.display = "block";
     formCadastra[0].style.display = "none";
 
@@ -129,9 +126,8 @@ function resgataMensagensUsuarios(){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             mensagemCampo.innerHTML = this.responseText;
-            scrollHere = mensagemCampo.lastElementChild.scrollHeight;
-
-            mensagemCampo.scrollTo(0, scrollHere);
+            mensagemCampo.ScrollTop = mensagemCampo.scrollHeight;
+            mensagemCampo.scrollTo(0, 1000);
         }
     };
     montaGet = "?id=" + id;
@@ -158,8 +154,8 @@ function cadastraMensagem(){
     montaGet = "?cod=" + id + "&mensagem=" + mensagem;
     xhttp.open("GET", "cadastraMensagem.php" + montaGet, false);
     xhttp.send();
-    funcaoVerificacao();
     formMensagem[0][0].value = "";
+    funcaoVerificacao();
     return false;
 }
 
@@ -168,11 +164,11 @@ function encerrar(){
     if(id != null){
         var xhttp = new XMLHttpRequest();
         montaGet = "?id=" + id;
-        xhttp.open("GET", "encerrar.php" + montaGet, true);
+        xhttp.open("GET", "encerrar.php" + montaGet, false);
         xhttp.send();
     }else{
         var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "encerrar.php", true);
+        xhttp.open("GET", "encerrar.php", false);
         xhttp.send();
     }
 

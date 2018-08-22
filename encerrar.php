@@ -1,7 +1,7 @@
 <?php
 include "funcoesConexao.php";
 
-if(isset($_GET)){
+if(!empty($_GET)){
     $id = $_GET["id"];
     $where = array('id_usuario', $id);
     truncar("mensagens");

@@ -15,15 +15,19 @@ function inserir($sql){
 }
 
 function listar($name, $where = null){
-
     $con = configDB();
-    $sql = "SELECT * FROM $name ";
-    if(!empty($where)){
-        $sql .=" WHERE $where[0] = \"$where[1]\"";
+    if($con){
+        $sql = "SELECT * FROM $name ";
+        if(!empty($where)){
+            $sql .=" WHERE $where[0] = \"$where[1]\"";
+        }
+        $result = mysqli_query($con, $sql);
+        (mysqli_num_rows($result) > 0)?: $result = null;
+        return $result;
+    }else{
+        return "erro";
     }
-    $result = mysqli_query($con, $sql);
-    (mysqli_num_rows($result) > 0)?: $result = null;
-    return $result;
+
 }
 
 function deletar($name, $where){

@@ -31,13 +31,13 @@
                 </div>
 
                 <div class="col-sm-5  divCont text-center my-3" id="info">
-
                     <h1>Informações sobre a conversa:</h1>
                     <h2 id="infoUsuario" class="my-5"></h2>
                     <div id="encerrarConversa" class="lead" style="margin-top:5rem; display:none;">
                         <h3>Deseja encerrar a conversa?</h3>
                         <button onclick="encerrar()" class="btn btn-outline-warning col-4">Clique aqui</button>
                     </div>
+                    <span id="sla"></span>
                     <form name="formCadastra" onsubmit="cadastraUsuario(); return false" class="formBottom" style="display:none;">
                         <p class="h5">Cadastre-se:</p>
                         <div class="form-row  justify-content-around ">

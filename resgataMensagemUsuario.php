@@ -11,30 +11,17 @@ if($result != null){
         if($id == $row["cod_usuario"]){
             $mensagens .=
             '<div class="my-1 text-right">' .
-                '<span>' . 'Você disse: <br/>' .
+                '<span>' . 'Você disse: </span><br/>' .
                 $row["mensagem"] .
             '</div>';
         }else{
             $mensagens .=
             '<div class="my-1 text-left">' .
-                '<span>' . $row["nome"] . ' disse: <br/>' .
+                '<span>' . $row["nome"] . ' disse: </span><br/>' .
                 $row["mensagem"] .
             '</div>';
         }
     }
 }
 
-    $html ='<div class="row">
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-    </div>
-';
-echo $mensagens . $html;
+echo $mensagens;
