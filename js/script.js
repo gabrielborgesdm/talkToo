@@ -126,8 +126,7 @@ function resgataMensagensUsuarios(){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             mensagemCampo.innerHTML = this.responseText;
-            mensagemCampo.ScrollTop = mensagemCampo.scrollHeight;
-            mensagemCampo.scrollTo(0, 1000);
+            mensagemCampo.scrollTo(0, mensagemCampo.scrollHeight);
         }
     };
     montaGet = "?id=" + id;
