@@ -16,12 +16,17 @@
         <div class="container-fluid">
             <section class="row justify-content-around mt-3">
 
-                <div class="col-11 col-sm-5 divCont my-3 " id="mensagem">
+                <div class="col-11 col-sm-5 divCont my-3 " id="mensagem" style="display:none;">
                     <div class="row justify-content-around" id="mensagemNome">
                         <h2>&nbsp;</h2>
                     </div>
                     <div class="container" id="mensagemCampo">
                     </div>
+                    <span id="encerrarConversa" class="text-light">
+                        Deseja encerrar a conversa?
+                        <a class="text-warning" onclick="encerrar()">Clique aqui!</a>
+                    </span>
+
                     <form name="formMensagem" onsubmit="cadastraMensagem(); return false;" class="formBottom">
                         <div class="form-row justify-content-around ">
                            <input type="text" class="form-control col-9"  placeholder="Digite sua mensagem"  id="textoMensagem" />
@@ -31,14 +36,10 @@
                 </div>
 
                 <div class="col-11 col-sm-5  divCont text-center my-3" id="info">
-                    <h1>Informações sobre a conversa:</h1>
-                    <h2 id="infoUsuario" class="my-5"></h2>
-                    <div id="encerrarConversa" class="lead" style="margin-top:5rem; display:none;">
-                        <h3>Deseja encerrar a conversa?</h3>
-                        <button onclick="encerrar()" class="btn btn-outline-warning col-4">Clique aqui</button>
-                    </div>
+                    <h1>Seja bem vindo ao Talktoo</h1>
+                    <div id="infoUsuario" class="my-5"></div>
                     <span id="sla"></span>
-                    <form name="formCadastra" onsubmit="cadastraUsuario(); return false" class="formBottom" style="display:none;">
+                    <form name="formCadastra" onsubmit="cadastraUsuario(); return false" class="formBottom">
                         <p class="h5">Entre com seu nick:</p>
                         <div class="form-row  justify-content-around ">
                            <input type="text" class="form-control col-9"  placeholder="Digite seu apelido" name="nomeCadastraUsuario" />

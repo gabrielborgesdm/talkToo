@@ -18,13 +18,15 @@ function acionaFuncao(){
 
 /*Atualiza as variaveis  e chama as funções de montar página*/
 function funcaoVerificacao(){
+    mensagem = document.getElementById("mensagem");
     mensagemNome = document.getElementById('mensagemNome');
     mensagemCampo = document.getElementById('mensagemCampo');
     formMensagem = document.getElementsByName('formMensagem');
 
+    info = document.getElementById("info");
     infoUsuario = document.getElementById("infoUsuario");
     encerrarConversa = document.getElementById("encerrarConversa");
-    formCadastra = document.getElementsByName('formCadastra');
+    formCadastra = document.getElementsByName("formCadastra");
 
     num = verificaOnlines();
     if(num == 0){
@@ -51,29 +53,29 @@ function verificaOnlines(){
 
 /*Funções que constroem a página de acordo com o número de pessoas onlines*/
 function montaZeroUsuario(){
-    mensagemNome.innerHTML = "<h2>Não há usuários online</h2>";
-    mensagemCampo.innerHTML = "";
-    formMensagem[0][0].disabled = true;
-    infoUsuario.innerHTML = "Não há usuários online";
-    encerrarConversa.style.display = "none";
-    formCadastra[0].style.display = "block";
+    mensagem.style.display = "none";
+    infoUsuario.innerHTML = "<p class='h4'>Não há usuários onlines!</p>";
+    info.style.display = "block";
 }
 
 function montaUmUsuario(){
     onlines = resgataNomeUsuarios();
-    mensagemNome.innerHTML = "<h2>" + onlines[0] +"</h2>";
-    mensagemCampo.innerHTML = "";
-    formMensagem[0][0].disabled = true;
 
     if(onlines[0] == nome){
         onlines[0] = "Você";
         encerrarConversa.style.display = "block";
-        formCadastra[0].style.display = "none";
+        mensagemNome.innerHTML = "<h3>" + onlines[0] +"</h3>";
+        mensagemCampo.innerHTML = "<p class='lead text-center text-dark'>Esperando por outro usuário!</p>";
+        formMensagem[0][0].placeholder = "Esperando por alguém...";
+        formMensagem[0][0].readOnly = true;
+        info.style.display = "none";
+        mensagem.style.display = "block";
     }else{
-        encerrarConversa.style.display = "none";
-        formCadastra[0].style.display = "block";
+        mensagem.style.display = "none";
+        info.style.display = "block";
+        infoUsuario.innerHTML = "<p class='h4'>" + onlines[0] + " está online!</p>";
     }
-    infoUsuario.innerHTML = "<h2>" + onlines[0] +" está online</h2>";
+
 }
 
 function montaDoisUsuario(){
@@ -81,18 +83,18 @@ function montaDoisUsuario(){
     nomes = "";
     for(i = 0; i < onlines.length; i++){
         if(onlines[i] == nome){
-            nomes += '<h2 class="order-last">' + onlines[i] +"</h2>";
+            nomes += '<h3 class="order-last">Você</h3>';
         }else{
-            nomes += '<h2>' + onlines[i] +"</h2>";
+            nomes += '<h3>' + onlines[i] +"</h3>";
         }
     }
     mensagemNome.innerHTML = nomes;
-    formMensagem[0][0].disabled = false;
-    infoUsuario.innerHTML = "<h2>Ambos estão online</h2>";
-    encerrarConversa.style.display = "block";
-    formCadastra[0].style.display = "none";
-
+    formMensagem[0][0].readOnly = false;
+    formMensagem[0][0].placeholder = "Digite sua mensagem!";
     resgataMensagensUsuarios();
+    encerrarConversa.style.display = "block";
+    info.style.display = "none";
+    mensagem.style.display = "block";
 }
 
 /*Funções que resgatam informações do banco de dados*/
