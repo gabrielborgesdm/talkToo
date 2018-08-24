@@ -16,21 +16,21 @@
         <div class="container-fluid">
             <section class="row justify-content-around mt-3">
 
-                <div class="col-sm-5 divCont my-3 " id="mensagem">
+                <div class="col-11 col-sm-5 divCont my-3 " id="mensagem">
                     <div class="row justify-content-around" id="mensagemNome">
                         <h2>&nbsp;</h2>
                     </div>
                     <div class="container" id="mensagemCampo">
                     </div>
                     <form name="formMensagem" onsubmit="cadastraMensagem(); return false;" class="formBottom">
-                        <div class="form-row  justify-content-around ">
+                        <div class="form-row justify-content-around ">
                            <input type="text" class="form-control col-9"  placeholder="Digite sua mensagem"  id="textoMensagem" />
                            <input type="submit" class="col-2 btn btn-dark" value="Go!" />
                         </div>
                     </form>
                 </div>
 
-                <div class="col-sm-5  divCont text-center my-3" id="info">
+                <div class="col-11 col-sm-5  divCont text-center my-3" id="info">
                     <h1>Informações sobre a conversa:</h1>
                     <h2 id="infoUsuario" class="my-5"></h2>
                     <div id="encerrarConversa" class="lead" style="margin-top:5rem; display:none;">
@@ -39,7 +39,7 @@
                     </div>
                     <span id="sla"></span>
                     <form name="formCadastra" onsubmit="cadastraUsuario(); return false" class="formBottom" style="display:none;">
-                        <p class="h5">Cadastre-se:</p>
+                        <p class="h5">Entre com seu nick:</p>
                         <div class="form-row  justify-content-around ">
                            <input type="text" class="form-control col-9"  placeholder="Digite seu apelido" name="nomeCadastraUsuario" />
                            <input type="submit" class="col-2 btn btn-dark" value="Go!" />
