@@ -11,7 +11,7 @@ if($result != null){
         if($id == $row["cod_usuario"]){
             $mensagens .=
             '<div class="my-1 text-right">' .
-                '<span>' . 'Você disse: </span><br/>' .
+                  '<span>' . 'Você disse: </span><br/>' .
                 $row["mensagem"] .
             '</div>';
         }else{
