@@ -89,7 +89,8 @@ function montaDoisUsuario(){
         }
     }
     mensagemNome.innerHTML = nomes;
-    formMensagem[0][0].readOnly = false;
+    formMensagem[0][0].disabled = false;
+    formMensagem[0][1].disabled = false;
     formMensagem[0][0].placeholder = "Digite sua mensagem!";
     resgataMensagensUsuarios();
     encerrarConversa.style.display = "block";
