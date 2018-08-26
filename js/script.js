@@ -60,14 +60,14 @@ function montaZeroUsuario(){
 
 function montaUmUsuario(){
     onlines = resgataNomeUsuarios();
-
     if(onlines[0] == nome){
         onlines[0] = "Você";
         encerrarConversa.style.display = "block";
         mensagemNome.innerHTML = "<h3>" + onlines[0] +"</h3>";
         mensagemCampo.innerHTML = "<p class='lead text-center text-dark'>Esperando por outro usuário!</p>";
         formMensagem[0][0].placeholder = "Esperando por alguém...";
-        formMensagem[0][0].readOnly = true;
+        formMensagem[0][0].disabled = true;
+        formMensagem[0][1].disabled = true;
         info.style.display = "none";
         mensagem.style.display = "block";
     }else{
@@ -139,24 +139,33 @@ function resgataMensagensUsuarios(){
 /*Funções que cadastram os dados enviados pelos Usuários*/
 function cadastraUsuario(){
     nome = formCadastra[0][0].value;
-    var xhttp = new XMLHttpRequest();
-    montaGet = "?nome=" + nome;
-    xhttp.open("GET", "cadastraUsuario.php" + montaGet, false);
-    xhttp.send();
-    funcaoVerificacao();
-    resgataIdUsuario();
-    formCadastra[0][0].value = "";
+    if(nome == ""){
+        document.getElementById("erroUsuario").innerHTML = "Insira seu nome de usuário!";
+
+    }else {
+        var xhttp = new XMLHttpRequest();
+        montaGet = "?nome=" + nome;
+        xhttp.open("GET", "cadastraUsuario.php" + montaGet, false);
+        xhttp.send();
+        funcaoVerificacao();
+        resgataIdUsuario();
+        formCadastra[0][0].value = "";
+    }
     return false;
 }
 
 function cadastraMensagem(){
     mensagem = formMensagem[0][0].value;
-    var xhttp = new XMLHttpRequest();
-    montaGet = "?cod=" + id + "&mensagem=" + mensagem;
-    xhttp.open("GET", "cadastraMensagem.php" + montaGet, false);
-    xhttp.send();
-    formMensagem[0][0].value = "";
-    funcaoVerificacao();
+    if(mensagem == ""){
+        document.getElementById("erroMensagem").innerHTML = "Insira sua mensagem!";
+    }else {
+        var xhttp = new XMLHttpRequest();
+        montaGet = "?cod=" + id + "&mensagem=" + mensagem;
+        xhttp.open("GET", "cadastraMensagem.php" + montaGet, false);
+        xhttp.send();
+        formMensagem[0][0].value = "";
+        funcaoVerificacao();
+    }
     return false;
 }
 

@@ -28,6 +28,9 @@
                     </span>
 
                     <form name="formMensagem" onsubmit="cadastraMensagem(); return false;" class="formBottom">
+                        <p class="col-12 text-left mb-0">
+                            <span id="erroMensagem" class="small text-warning">&nbsp;</span>
+                        </p>
                         <div class="form-row justify-content-around ">
                            <input type="text" class="form-control col-9"  placeholder="Digite sua mensagem"  id="textoMensagem" />
                            <input type="submit" class="col-2 btn btn-dark" value="Go!" />
@@ -41,9 +44,12 @@
                     <span id="sla"></span>
                     <form name="formCadastra" onsubmit="cadastraUsuario(); return false" class="formBottom">
                         <p class="h5">Entre com seu nick:</p>
+                        <p class="col-12 text-left mb-0">
+                            <span id="erroUsuario" class="small text-warning">&nbsp;</span>
+                        </p>
                         <div class="form-row  justify-content-around ">
-                           <input type="text" class="form-control col-9"  placeholder="Digite seu apelido" name="nomeCadastraUsuario" />
-                           <input type="submit" class="col-2 btn btn-dark" value="Go!" />
+                            <input type="text" class="form-control col-9"  placeholder="Digite seu apelido" name="nomeCadastraUsuario" />
+                            <input type="submit" class="col-2 btn btn-dark" value="Go!" />
                         </div>
                     </form>
                 </div>
