@@ -59,7 +59,7 @@ function montaZeroUsuario(){
 }
 
 function montaUmUsuario(){
-    onlines = resgataNomeUsuarios();
+    onlines = resgataNome();
     if(onlines[0] == nome){
         onlines[0] = "Você";
         encerrarConversa.style.display = "block";
@@ -79,7 +79,7 @@ function montaUmUsuario(){
 }
 
 function montaDoisUsuario(){
-    onlines = resgataNomeUsuarios();
+    onlines = resgataNome();
     nomes = "";
     for(i = 0; i < onlines.length; i++){
         if(onlines[i] == nome){
@@ -92,14 +92,30 @@ function montaDoisUsuario(){
     formMensagem[0][0].disabled = false;
     formMensagem[0][1].disabled = false;
     formMensagem[0][0].placeholder = "Digite sua mensagem!";
-    resgataMensagensUsuarios();
+    resgataMensagens();
     encerrarConversa.style.display = "block";
+    info.style.display = "none";
+    mensagem.style.display = "block";
+    mensagemNome.innerHTML = nomes;
+
+
+    if(nome != undefined){
+        formMensagem[0][0].disabled = false;
+        formMensagem[0][1].disabled = false;
+        formMensagem[0][0].placeholder = "Digite sua mensagem!";
+        encerrarConversa.style.display = "block";
+
+    }else{
+        formMensagem[0].style.display = "none";
+        encerrarConversa.style.display = "none";
+    }
+    resgataMensagens();
     info.style.display = "none";
     mensagem.style.display = "block";
 }
 
 /*Funções que resgatam informações do banco de dados*/
-function resgataNomeUsuarios(){
+function resgataNome(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -107,24 +123,12 @@ function resgataNomeUsuarios(){
             onlines = onlines.split(";");
         }
     };
-    xhttp.open("GET", "resgataNomeUsuario.php", false);
+    xhttp.open("GET", "resgataNome.php", false);
     xhttp.send();
     return onlines;
 }
 
-function resgataIdUsuario(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            id = this.responseText;
-        }
-    };
-    montaGet = "?nome=" + nome;
-    xhttp.open("GET", "resgataIdUsuario.php" + montaGet, false);
-    xhttp.send();
-}
-
-function resgataMensagensUsuarios(){
+function resgataMensagens(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -133,23 +137,39 @@ function resgataMensagensUsuarios(){
         }
     };
     montaGet = "?id=" + id;
-    xhttp.open("GET", "resgataMensagemUsuario.php" + montaGet, true);
+    xhttp.open("GET", "resgataMensagens.php" + montaGet, true);
     xhttp.send();
 }
 
 /*Funções que cadastram os dados enviados pelos Usuários*/
 function cadastraUsuario(){
-    nome = formCadastra[0][0].value;
-    if(nome == ""){
-        document.getElementById("erroUsuario").innerHTML = "Insira seu nome de usuário!";
+    valida = 1;
+    onlines = resgataNome();
 
+    for(i = 0; i < onlines.length; i++){
+        if(formCadastra[0][0].value == onlines[i]){
+            valida = 0;
+        }
+    }
+
+    if(formCadastra[0][0].value == "" || valida == 0){
+        if(formCadastra[0][0].value == ""){
+            document.getElementById("erroUsuario").innerHTML = "Insira seu nome de usuário!";
+        }else{
+            document.getElementById("erroUsuario").innerHTML = "Usuário já existente, tente novamente!";
+        }
     }else {
         var xhttp = new XMLHttpRequest();
-        montaGet = "?nome=" + nome;
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                id = this.responseText;
+                nome = formCadastra[0][0].value;
+            }
+        };
+        montaGet = "?nome=" + formCadastra[0][0].value;
         xhttp.open("GET", "cadastraUsuario.php" + montaGet, false);
         xhttp.send();
         funcaoVerificacao();
-        resgataIdUsuario();
         formCadastra[0][0].value = "";
     }
     return false;
@@ -160,6 +180,7 @@ function cadastraMensagem(){
     if(mensagem == ""){
         document.getElementById("erroMensagem").innerHTML = "Insira sua mensagem!";
     }else {
+        document.getElementById("erroMensagem").innerHTML = "&nbsp;";
         var xhttp = new XMLHttpRequest();
         montaGet = "?cod=" + id + "&mensagem=" + mensagem;
         xhttp.open("GET", "cadastraMensagem.php" + montaGet, false);
@@ -170,18 +191,13 @@ function cadastraMensagem(){
     return false;
 }
 
-/*Limpa todo o Banco de dados*/
+/*Limpa o banco*/
 function encerrar(){
-    if(id != null){
+    if(nome != undefined){
         var xhttp = new XMLHttpRequest();
         montaGet = "?id=" + id;
         xhttp.open("GET", "encerrar.php" + montaGet, false);
         xhttp.send();
-    }else{
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "encerrar.php", false);
-        xhttp.send();
+        funcaoVerificacao();
     }
-
-    funcaoVerificacao();
 }

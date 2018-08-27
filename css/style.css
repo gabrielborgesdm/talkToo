@@ -1,7 +1,6 @@
-@import url('../fonts/BalooBhai-Regular.ttf');
 @media (max-width: 767.98px) {
     .divCont{
-        height: 25rem;
+        height: 34rem;
     }
     h1{
         font-size: 2rem;
